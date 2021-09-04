@@ -17,6 +17,16 @@ pipeline {
             }
          }
      }
+
+   stage('Run the Docker container on remote hosts 10.0.0.11') {
+
+                steps {
+            withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+              sh  'docker pull sailesh081/task04_sailesh:$BUILD_NUMBER'
+              sh  'docker -H "ssh://vagrant@node1" run -d -p 85:80 --name=helloworld sailesh081/task04_sailesh:$BUILD_NUMBER'
+            }
+         }
+         }
          
   }
 }
