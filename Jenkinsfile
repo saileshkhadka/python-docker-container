@@ -23,7 +23,7 @@ pipeline {
                 steps {
              
                sh  'docker -H ssh://vagrant@10.0.0.11 run -d -p 85:80 --name=helloworld sailesh081/task04_sailesh'
-            }
+            
          }
          }
          
