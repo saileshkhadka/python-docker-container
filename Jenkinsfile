@@ -5,7 +5,7 @@ pipeline {
                steps {
 
                     sh 'docker build -t sailesh081/task04_sailesh:latest .'
-                    sh 'docker tag sailesh081/task04_sailesh:latest sailesh081/task04_sailesh:$BUILD_NUMBER'
+                    sh 'docker tag sailesh081/task04_sailesh:latest sailesh081/task04_sailesh:5'
               }
             }
      
@@ -14,7 +14,7 @@ pipeline {
                 steps {
             withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
               sh  'docker push sailesh081/task04_sailesh:latest'
-              sh  'docker push sailesh081/task04_sailesh:$BUILD_NUMBER'
+              sh  'docker push sailesh081/task04_sailesh:5'
             }
          }
      }
