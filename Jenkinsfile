@@ -4,8 +4,8 @@ pipeline {
      stage('Build Docker image and Tag') {
                steps {
 
-                    sh 'docker build -t sailesh081/task04_sailesh:latest .'
-                    sh 'docker tag sailesh081/task04_sailesh:latest sailesh081/task04_sailesh:5'
+                    sh 'docker build -t sailesh081/test_pipeline:latest .'
+                    sh 'docker tag sailesh081/test_pipeline:latest sailesh081/test_pipeline:5'
               }
             }
      
@@ -13,8 +13,8 @@ pipeline {
 
                 steps {
             withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
-              sh  'docker push sailesh081/task04_sailesh:latest'
-              sh  'docker push sailesh081/task04_sailesh:5'
+              sh  'docker push sailesh081/test_pipeline:latest'
+              sh  'docker push sailesh081/test_pipeline:5'
             }
          }
      }
@@ -23,7 +23,7 @@ pipeline {
 
                 steps {
              
-               sh  'docker -H ssh://vagrant@10.0.0.11 run -d -p 85:80 --name=helloworld sailesh081/task04_sailesh'
+               sh  'docker -H ssh://vagrant@10.0.0.11 run -d -p 85:80 --name=helloworld sailesh081/test_pipeline'
             
          }
          }
